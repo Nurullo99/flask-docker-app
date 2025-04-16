@@ -1,22 +1,27 @@
 name: Build and Push Docker Image
 
+# Qachon ishga tushadi: faqat master branchga push bo‘lsa
 on:
   push:
     branches: [ "master" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # GitHub Actions serveri
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3  # Repositoriyni klon qiladi
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      # Docker Hub token orqali login qiladi
 
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-app .
+      # Docker image build qiladi, nomi: username/flask-app
 
     - name: Push to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app
+      # Docker image'ni Docker Hub'ga yuboradi
+
