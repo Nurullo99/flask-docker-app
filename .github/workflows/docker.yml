@@ -13,10 +13,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Log in to Docker Hub
-      run: echo "${{ secrets.dckr_pat_jGShHHtTFSEvg7hBJ6v5lPAmYxQ }}" | docker login -u "${{ secrets.nurullo1999 }}" --password-stdin
+      run: echo "${{ secrets.dckr_pat_jGShHHtTFSEvg7hBJ6v5lPAmYxQ }}" | docker login -u "${{ secrets.NURULLO1999 }}" --password-stdin
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.nurullo1999 }}/flask-app .
+      run: docker build -t ${{ secrets.NURULLO1999 }}/flask-app .
 
     - name: Push to Docker Hub
-      run: docker push ${{ secrets.nurullo1999 }}/flask-app
+      run: docker push ${{ secrets.NURULLO1999 }}/flask-app
